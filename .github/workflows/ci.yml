@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev/**]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 安装依赖
+        run: |
+          cd src
+          pip install --break-system-packages -e .
+          pip install --break-system-packages ruff
+      - name: 代码检查
+        run: ruff check src/claude_man/ --ignore=E501,F401
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 安装依赖
+        run: |
+          cd src
+          pip install --break-system-packages -e .
+          pip install --break-system-packages pytest
+      - name: 运行测试
+        run: |
+          cd src
+          python -m pytest tests/ -v
+
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 验证安装
+        run: |
+          pip install --break-system-packages ./src
+          python -c "from claude_man import dispatch; print('安装成功')"

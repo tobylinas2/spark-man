@@ -1,0 +1,53 @@
+{
+  "permissions": {
+    "allow": [
+        "Bash(gh:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 {{HOOKS_DIR}}/check_new.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "filesystem": {
+      "allowRead": [
+        "{{WORK_DIR}}",
+        "{{SRC_DIR}}",
+        "{{SITE_PACKAGES}}",
+        "/home"
+      ],
+      "allowWrite": [
+        "{{WORK_DIR}}",
+        "/home/toby/.config/gh"
+      ],
+      "denyWrite": [
+        "{{WORK_DIR}}/.claude/settings.json"
+      ]
+    },
+    "network": {
+      "allow": [
+        "github.com",
+        "api.github.com",
+        "*.github.com",
+        "raw.githubusercontent.com",
+        "githubusercontent.com",
+        "*.githubusercontent.com",
+        "objects.githubusercontent.com"
+      ]
+    },
+    "excludedCommands": [
+      "gh *"
+    ]
+  }
+}

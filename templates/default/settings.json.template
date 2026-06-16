@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 {{TOOLS_DIR}}/*)",
+      "Bash(python3 --version)",
+      "Bash(which python3)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 {{HOOKS_DIR}}/check_new.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

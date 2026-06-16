@@ -1,0 +1,11 @@
+*.pyc
+__pycache__/
+*.egg-info/
+test-man/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+dist/
