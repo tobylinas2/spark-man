@@ -3,6 +3,7 @@ import sys
 import time
 import uuid
 import subprocess
+from .worker_common import calc_delay, load_or_create_session_id, build_system_prompt
 import logging
 
 from .config import load_config
@@ -16,7 +17,6 @@ logging.basicConfig(
 log = logging.getLogger("worker")
 
 
-from .worker_common import calc_delay, load_or_create_session_id, build_system_prompt
 
 
 def build_brief(config) -> str:

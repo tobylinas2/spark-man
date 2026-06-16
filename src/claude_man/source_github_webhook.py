@@ -37,6 +37,7 @@ import yaml
 
 from .dispatcher import dispatch
 from .config import CLAUDE_MAN_HOME
+from .source_github_common import ensure_source_dir, ensure_list as _ensure_list
 
 log = logging.getLogger("source.github-webhook")
 
@@ -96,7 +97,6 @@ _EVENT_MAP = {
 # ─── 配置 ──────────────────────────────────────────────────
 
 
-from .source_github_common import ensure_source_dir, ensure_list as _ensure_list
 def _ensure_source_dir():
     return ensure_source_dir(SOURCE_DIR)
 

@@ -1,4 +1,3 @@
-from .worker_common import calc_delay, load_or_create_session_id, build_system_prompt
 """
 Worker TUI — 只读仪表盘，实时展示 Worker 状态和 Claude 输出。
 """
@@ -22,6 +21,7 @@ from rich.live import Live
 from rich.console import Console
 from rich import box
 
+from .worker_common import calc_delay, load_or_create_session_id, build_system_prompt
 from .config import load_config
 from .db import init_db, count_pending, count_by_level, get_popup_messages
 from .preview import format_brief
@@ -73,13 +73,6 @@ class WorkerTUI:
             self.claude_output = self.claude_output[-200:]
 
     def _render_header(self) -> Panel:
-        status_color = {"idle": "green", "running": "yellow", "retrying": "red", "error": "red"}.get(
-            self.status, "white"
-        )
-        status_text = Text.assemble(
-            ("● ", status_color),
-            (self.status.upper(), status_color),
-        )
         info = Table.grid(padding=(0, 2))
         info.add_column()
         info.add_row(Text(f"Claude Man Worker · {self.config.name}", style="bold cyan"))

@@ -24,6 +24,7 @@ import yaml
 
 from .dispatcher import dispatch
 from .config import CLAUDE_MAN_HOME
+from .source_github_common import ensure_source_dir, ensure_list as _ensure_list
 
 log = logging.getLogger("source.github")
 
@@ -85,7 +86,9 @@ def _since_param(since: str) -> str:
 # ─── 配置/状态读写 ──────────────────────────────────────────
 
 
-from .source_github_common import ensure_source_dir, ensure_list as _ensure_list
+
+
+
 def _ensure_source_dir():
     return ensure_source_dir(SOURCE_DIR)
 
