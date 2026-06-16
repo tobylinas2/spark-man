@@ -255,8 +255,11 @@ def handle(msg):
 - [x] 工具脚本 `tools/mark_list.py`
 
 ### Phase 3 — 集成与测试
+- [x] GitHub Actions CI（lint + test + install）
+- [x] 单元测试覆盖：db、subscribe、preview、config、worker_common
+- [x] 代码审计与修复（20 问题修 18）
+- [x] 示例 Source 插件：GitHub 轮询 + Webhook
 - [ ] 完整端到端测试：dispatch → worker → claude → mark
-- [ ] 示例 Source 插件：GitHub 轮询
 - [ ] 错误处理与日志
 
 ### Phase 4 — 可选增强
@@ -264,3 +267,4 @@ def handle(msg):
 - [ ] 监控/健康检查
 - [ ] 消息去重
 - [ ] 优先级队列
+- [ ] 工作流引擎
